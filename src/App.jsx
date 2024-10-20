@@ -5,6 +5,7 @@ import { Button, Stack, Typography } from "@mui/material";
 import clsx from "clsx";
 import "./App.css";
 import Navigation from "./components/Navigation";
+import LineGraph from "./components/Line";
 
 const NAVLINKS = [
   { key: "summary", label: "Summary" },
@@ -26,7 +27,7 @@ const DURATIONS = [
 
 function App() {
   const [selectedNav, setSelectedNav] = useState(1);
-  const [selectedDuration, setSelectedDuration] = useState("1d");
+  const [selectedDuration, setSelectedDuration] = useState("1y");
 
   const handleNavChange = (event, newValue) => {
     setSelectedNav(newValue);
@@ -37,7 +38,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="w-[920px]">
       <div className="flex">
         <Typography
           variant="h1"
@@ -69,7 +70,7 @@ function App() {
         spacing={2}
         direction="row"
         justifyContent="space-between"
-        className="mt-[60px]"
+        className="mt-[60px] mb-7"
       >
         <Stack direction="row" spacing={2}>
           <Button
@@ -103,6 +104,9 @@ function App() {
           ))}
         </Stack>
       </Stack>
+      <div className="h-[460px]">
+        <LineGraph selectedDuration={selectedDuration} />
+      </div>
     </div>
   );
 }
